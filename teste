@@ -1,1 +1,71 @@
+#include <stdio.h>
+#include <string.h>
 
+// Constantes para tamanhos máximos
+#define MAX_CIDADE 50
+#define MAX_CODIGO 4
+
+// Estrutura para representar uma carta
+typedef struct {
+    char estado;
+    char codigo[MAX_CODIGO];
+    char cidade[MAX_CIDADE];
+    int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+} Carta;
+
+// Função para ler uma carta
+void ler_carta(Carta *carta, int numero) {
+    printf("\n=== Cadastro da Carta %d ===\n", numero);
+    
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta->estado);
+    
+    printf("Código da Carta (ex: %c01): ", carta->estado);
+    scanf("%s", carta->codigo);
+    
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", carta->cidade);
+    
+    printf("População: ");
+    scanf("%d", &carta->populacao);
+    
+    printf("Área (em km²): ");
+    scanf("%f", &carta->area);
+    
+    printf("PIB (em bilhões de reais): ");
+    scanf("%f", &carta->pib);
+    
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &carta->pontos_turisticos);
+}
+
+// Função para exibir uma carta
+void exibir_carta(Carta carta, int numero) {
+    printf("\n=== Carta %d ===\n", numero);
+    printf("Estado: %c\n", carta.estado);
+    printf("Código: %s\n", carta.codigo);
+    printf("Nome da Cidade: %s\n", carta.cidade);
+    printf("População: %d habitantes\n", carta.populacao);
+    printf("Área: %.2f km²\n", carta.area);
+    printf("PIB: %.2f bilhões de reais\n", carta.pib);
+    printf("Pontos Turísticos: %d\n", carta.pontos_turisticos);
+    printf("==================\n");
+}
+
+int main() {
+    Carta carta1, carta2;
+    
+    // Ler os dados das cartas
+    ler_carta(&carta1, 1);
+    ler_carta(&carta2, 2);
+    
+    // Exibir as cartas cadastradas
+    printf("\n\n=== Cartas Cadastradas ===\n");
+    exibir_carta(carta1, 1);
+    exibir_carta(carta2, 2);
+    
+    return 0;
+}
